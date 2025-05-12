@@ -86,16 +86,16 @@ if (enter === 'e' || enter === null || enter === '') {
     }
     
     console.log(client1);
-
-
+    
+    
     //             # Age:
     //             - Check for leading, trailing, or middle spaces.
     //             - Verify that only digits are entered.
     let client_age = prompt("How old are you?").replaceAll(" ", "")
     //             - Do not save the Age if it has 0 characters, or if it has 3 characters or more.
     while (client_age !== null) {
-        if (client_age.length === 0 || client_age.length >= 2 || client_age === NaN) {
-            client_age = prompt("Please right your correct age:")
+        if (client_age.length === 0 || client_age.length > 2 || isNaN(client_age) == true) {
+            client_age = prompt("Please write your correct age:").replaceAll(" ", "")
         } else {
             client1.age = client_age
             break
@@ -103,13 +103,27 @@ if (enter === 'e' || enter === null || enter === '') {
     }
     console.log(client1);
     
-
+    
     //             # Password:
     //             - Check for leading or trailing spaces.
-    let client_passwoed = prompt("Chouse a passwoed:").trim()
     //             - Do not save the Password if it has spaces in the middle.
-    //             - Require at least one special character from the set: ["@", "#", "-", "+", "*", "/"].
-    //             - Require at least 7 characters to confirm the password.
+    let client_password = prompt("Chouse a password:")
+    while (client_password !== null) {
+        //             - Require at least 7 characters to confirm the password.
+        if (/\s/.test(client_password) === true) {
+            client_password = prompt("The password must not have spaces:")   
+        }
+        if (client_password.length < 7) {
+            client_password = prompt("Your password should have more than 7 characters:")
+            //             - Require at least one special character from the set: ["@", "#", "-", "+", "*", "/"].
+        } else if (/[@#-+*/]/.test(client_password) === false) {
+            client_password = prompt("You must use at least one special character: ['@' '#' '-' '+' '*' '/'].")
+        } else {
+            client1.password = client_password
+            break
+        }
+    }
+    console.log(client1);
     
     //             # Password_confirmed:
     //             - The user must re-enter their exact password; otherwise, they are blocked.
