@@ -43,7 +43,7 @@ do {
     } else if (enter === 's') {
         //         * If the user chooses to sign up, here are the details they must enter:
         //             # Name (Full):
-        let client_Uname = prompt("Your name please:").trim()
+        let client_Uname = prompt("Your name is:").trim()
         while (client_Uname !== null) {
             if (client_Uname.length > 5) {
                 //             - Check for leading or trailing spaces.
@@ -67,22 +67,22 @@ do {
         //             # Email:
         //             - Check for leading or trailing spaces.
         //             - Convert all letters to lowercase.
-        let client_email = prompt("Your email please:").trim().toLowerCase()
-        while (client_email !== null) {
+        let sign_email = prompt("Your email is:").trim().toLowerCase()
+        while (sign_email !== null) {
             //             - Do not save the Email if it has spaces in the middle.
-            if (client_email.includes(" ")) {
-                client_email = prompt("Your email shouldn't have spaces:").trim().toLowerCase()
+            if (sign_email.includes(" ")) {
+                sign_email = prompt("Your email shouldn't have spaces:").trim().toLowerCase()
                 //             - Do not save the Email if it has fewer than 10 characters (excluding spaces).
-            } else if (client_email.length < 10) {
-                client_email = prompt("Your email should have more than 10 characters:").trim().toLowerCase()
+            } else if (sign_email.length < 10) {
+                sign_email = prompt("Your email should have more than 10 characters:").trim().toLowerCase()
                 //             - Do not save the Email if it does not contain exactly one "@" symbol.
-            } else if ([...client_email].filter(e => e === '@').length !== 1) {
-                client_email = prompt("Your email should have one '@'.").trim().toLowerCase()
+            } else if ([...sign_email].filter(e => e === '@').length !== 1) {
+                sign_email = prompt("Your email should have one '@'.").trim().toLowerCase()
                 //             - Ensure the email is unique.
-            } else if (this.email === client_email) {
-                client_email = prompt("This email is allready exist, creat an other please:").trim().toLowerCase()
+            } else if (this.email === sign_email) {
+                sign_email = prompt("This email is allready exist, creat an other is:").trim().toLowerCase()
             } else {
-                client1.email = client_email
+                client1.email = sign_email
                 break
             }
         }
@@ -109,19 +109,19 @@ do {
         //             # Password:
         //             - Check for leading or trailing spaces.
         //             - Do not save the Password if it has spaces in the middle.
-        let client_password = prompt("Chouse a password:")
-        while (client_password !== null) {
+        let sign_password = prompt("Chouse a password:")
+        while (sign_password !== null) {
             //             - Require at least 7 characters to confirm the password.
-            if (/\s/.test(client_password) === true) {
-                client_password = prompt("The password must not have spaces:")   
+            if (/\s/.test(sign_password) === true) {
+                sign_password = prompt("The password must not have spaces:")   
             }
-            if (client_password.length < 7) {
-                client_password = prompt("Your password should have more than 7 characters:")
+            if (sign_password.length < 7) {
+                sign_password = prompt("Your password should have more than 7 characters:")
                 //             - Require at least one special character from the set: ["@", "#", "-", "+", "*", "/"].
-            } else if (/[@#-+*/]/.test(client_password) === false) {
-                client_password = prompt("You must use at least one special character: ['@' '#' '-' '+' '*' '/'].")
+            } else if (/[@#-+*/]/.test(sign_password) === false) {
+                sign_password = prompt("You must use at least one special character: ['@' '#' '-' '+' '*' '/'].")
             } else {
-                client1.password = client_password
+                client1.password = sign_password
                 break
             }
         }
@@ -131,9 +131,9 @@ do {
         //             # Password_confirmed:
         let confirme_password = prompt("Confirme your password:")
         //             - The user must re-enter their exact password; otherwise, they are blocked.
-        if (confirme_password !== client_password) {
+        if (confirme_password !== sign_password) {
             alert("You're sign up was successful.")
-        } else if (confirme_password !== client_password) {
+        } else if (confirme_password !== sign_password) {
             alert("you didn't match the email. See you later.")
             break
         }
@@ -141,17 +141,48 @@ do {
     } else if (enter === 'l') {
         //         * If the user chooses to log in, here are the details they must enter:
         //             # Email:
+        let log_email = prompt("Your email acount:")
         //             - Check if the email exists in our Database.
-                    
-        //             # Password:
-        //             - Check if the entered password is associated with the previously entered email.
+        if (log_email !== client1.email) {
+            log_email = prompt("The email is wrong, try again:")
+        } else if (log_email === client1.email) {
+            //             # Password:
+            let log_password = prompt("Your password acount:")
+            if ((log_password !== client1.password)) {
+                //             - Check if the entered password is associated with the previously entered email.
+                log_password = prompt("The password is wrong, try again:")
+            } else if (log_password === client1.password) {
+                alert("Your loged in..")
+//                   * After the user logs in, display the amount they have in their bank (user's choice) and offer them services:
+
+//                       # Logout:
+//                       - If the user chooses this option, they are logged out and offered the option, as at the beginning, to sign up, log in, or change the password.
+            
+//                       # Withdraw Money:
+//                       - If the user chooses this option, they can withdraw an amount from their bank (not exceeding the available amount).
+            
+//                       # Deposit Money:
+//                       - If the user chooses this option, they can deposit the desired amount (not exceeding 1000 dirhams).
+            
+//                       # Take a Loan:
+//                       - If the user chooses this option, they can take a loan up to 20% of what they already have.
+//                       - They receive an additional 20%, but lose 10% with each login until reaching the amount of their loan.
+            
+//                       # Invest:
+//                       - If the user chooses this option, they can invest any amount in the bank.
+//                       - Upon the next login, they will receive 20% of their investment each time until reaching 120% (earning 20% on each investment).
+            
+//                       # History:
+//                       - Ability to view the entire transaction history.
+            }
+        }
     
     } else if (enter === 'p') {
         //         * If the user chooses to change the password:
         //             - They must enter their existing Email in the Database.
-    
+        
     } else {
-        alert("Please choose from options")
+        alert("Please choose from the options:")
         enter = prompt(`
             - Signing ('s')
             - Logging ('l')
@@ -160,35 +191,3 @@ do {
     }
 } while (enter !== null);
 
-//         * After the user logs in, display the amount they have in their bank (user's choice) and offer them services:
-
-//             # Logout:
-//             - If the user chooses this option, they are logged out and offered the option, as at the beginning, to sign up, log in, or change the password.
-            
-//             # Withdraw Money:
-//             - If the user chooses this option, they can withdraw an amount from their bank (not exceeding the available amount).
-            
-//             # Deposit Money:
-//             - If the user chooses this option, they can deposit the desired amount (not exceeding 1000 dirhams).
-            
-//             # Take a Loan:
-//             - If the user chooses this option, they can take a loan up to 20% of what they already have.
-//             - They receive an additional 20%, but lose 10% with each login until reaching the amount of their loan.
-            
-//             # Invest:
-//             - If the user chooses this option, they can invest any amount in the bank.
-//             - Upon the next login, they will receive 20% of their investment each time until reaching 120% (earning 20% on each investment).
-            
-//             # History:
-//             - Ability to view the entire transaction history.
-
-
-// let Unamename = 44
-// class na {
-//     constructor(name) {
-//         this.Unamename = name
-//     }
-// }
-
-// let p  = new na(Unamename)
-// console.log(p);
