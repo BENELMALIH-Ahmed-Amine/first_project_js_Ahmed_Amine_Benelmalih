@@ -21,53 +21,92 @@ let enter = prompt(`
     - Changing the password 'p'
     - Exit 'e'`)
 
+class Client {
+    constructor(name, age, email, password, solde) {
+        this.name = name
+        this.age = age
+        this.email = email
+        this.password = password
+        this.solde = solde
+    }   
+}
+
+
+let client1 = new Client("", Number(""), "", "", 400)
+//^ let client2 = new Client("222", Number(''), "azerty@uiop", "", 450)
+
 if (enter === 'e' || enter === null || enter === '') {
-    //     + If the user only writes "exit", they exit the current process, and the choice question is asked again.
+    //     + If the user only writes "exit," they exit the current process, and the choice question is asked again.
     alert("See you later..")
 } else if (enter === 's') {
     //         * If the user chooses to sign up, here are the details they must enter:
-    //             # Name (Full): 
-    while (client_Uname < 5 || Number(client_Uname) === true || (client_Uname !== 97 && client_Uname !== 122)) {
-        var client_Uname = prompt("Your full name please:").trim()
-        if (client_Uname.length >= 5) {        
+    //             # Name (Full):
+    let client_Uname = prompt("Your name please:").trim()
+    while (client_Uname !== null) {
+        if (client_Uname.length > 5) {
             //             - Check for leading or trailing spaces.
-            
             //             - The first letter should be capitalized.
-            //^             - After each space, the first letter should remain capitalized.
-            //^             - Check that all other characters are in lowercase.
-            client_Uname = client_Uname[0].toUpperCase() + client_Uname.slice(1)
-            
+            //             - After each space, the first letter should remain capitalized.
+            //             - Check that all other characters are in lowercase.
+            client_Uname = client_Uname.split(' ').map(e => e[0].toUpperCase() + e.split(1)).join(' ')
+            client1.name = client_Uname
             break
-        } else if (client_Uname < 5) {
+        } else if (client_Uname.length < 5) {
             //             - Do not save the Name if it has less than 5 characters (excluding spaces).
-            alert("the user name should have 5 letters or more.")
-        } else if (Number(client_Uname) === true || (client_Uname !== 97 && client_Uname !== 122)) {
-            //             - Do not save the Name if it contains numbers, "@", or similar special characters.
-            alert("Please do not use numbers or special characters")
+            client_Uname = prompt("Your name should be more than 5 characters").trim()
+        } else if (!(client_Uname >= 65 && client_Uname <= 90) && !(client_Uname >= 97 && client_Uname <= 122) || (client_Uname >= 48 && client_Uname <= 57) ) {
+            //todo             - Do not save the Name if it contains numbers, "@", or similar special characters.
+            client_Uname = prompt("Your name shouldn't have an '@'").trim()
         }
-
-        console.log(client_Uname)
     }
-    alert(client_Uname)
+    console.log(client1);
     
+
     //             # Email:
-    var client_email = prompt("Your email please:")
     //             - Check for leading or trailing spaces.
     //             - Convert all letters to lowercase.
-    //             - Do not save the Email if it has spaces in the middle.
-    //             - Do not save the Email if it has fewer than 10 characters (excluding spaces).
-    //             - Do not save the Email if it does not contain exactly one "@" symbol.
-    //             - Ensure the email is unique.
+    let client_email = prompt("Your email please:").trim().toLowerCase()
+    while (client_email !== null) {
+        //             - Do not save the Email if it has spaces in the middle.
+        if (client_email.includes(" ")) {
+            client_email = prompt("Your email shouldn't have spaces:").trim().toLowerCase()
+            //             - Do not save the Email if it has fewer than 10 characters (excluding spaces).
+        } else if (client_email.length < 10) {
+            client_email = prompt("Your email should have more than 10 characters:").trim().toLowerCase()
+            //             - Do not save the Email if it does not contain exactly one "@" symbol.
+        } else if ([...client_email].filter(e => e === '@').length !== 1) {
+            client_email = prompt("Your email should have one '@'.").trim().toLowerCase()
+            //             - Ensure the email is unique.
+        } else if (this.email === client_email) {
+            client_email = prompt("This email is allready exist, creat an other please:").trim().toLowerCase()
+        } else {
+            client1.email = client_email
+            break
+        }
+    }
     
+    console.log(client1);
+
+
     //             # Age:
-    var client_age = prompt("How old are you?")
     //             - Check for leading, trailing, or middle spaces.
     //             - Verify that only digits are entered.
+    let client_age = prompt("How old are you?").replaceAll(" ", "")
     //             - Do not save the Age if it has 0 characters, or if it has 3 characters or more.
+    while (client_age !== null) {
+        if (client_age.length === 0 || client_age.length >= 2 || client_age === NaN) {
+            client_age = prompt("Please right your correct age:")
+        } else {
+            client1.age = client_age
+            break
+        }
+    }
+    console.log(client1);
     
-    var client_passwoed = prompt("Create a passwoed:")
+
     //             # Password:
     //             - Check for leading or trailing spaces.
+    let client_passwoed = prompt("Chouse a passwoed:").trim()
     //             - Do not save the Password if it has spaces in the middle.
     //             - Require at least one special character from the set: ["@", "#", "-", "+", "*", "/"].
     //             - Require at least 7 characters to confirm the password.
@@ -97,18 +136,7 @@ if (enter === 'e' || enter === null || enter === '') {
 }
 
 //         * After the user logs in, display the amount they have in their bank (user's choice) and offer them services:
-class Client {
-    constructor(name, age, email, password, solde) {
-        this.name = name
-        this.age = age
-        this.password = password
-        this.email = email
-        this.solde = solde
-    }   
-}
 
-let client_solde = 400
-let client1 = new Client(client_Uname, client_age, client_email, client_passwoed, solde)
 //             # Logout:
 //             - If the user chooses this option, they are logged out and offered the option, as at the beginning, to sign up, log in, or change the password.
             
@@ -129,16 +157,13 @@ let client1 = new Client(client_Uname, client_age, client_email, client_passwoed
 //             # History:
 //             - Ability to view the entire transaction history.
 
-// if (4 == 4) {
-//     var Unamename = 44
-// }
+
+// let Unamename = 44
 // class na {
-//     constructor(name, namef) {
+//     constructor(name) {
 //         this.Unamename = name
-//         this.namef = namef
 //     }
 // }
 
-// let p  = new na(Unamename, 'fgdfd')
-// console.log(Unamename);
+// let p  = new na(Unamename)
 // console.log(p);
