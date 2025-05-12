@@ -15,22 +15,43 @@
 // ## 3 - Instructions:
 // - Account Creation and Management:
 //     + Allow the user, via prompts, to choose between signing up, logging in, or changing the password.
-let enter = prompt("- Signing 's'\n- Logging 'l'\n- Changing the password 'p'\n- Exit 'e'")
+let enter = prompt(`
+    - Signing 's'
+    - Logging 'l'
+    - Changing the password 'p'
+    - Exit 'e'`)
 
 if (enter === 'e' || enter === null || enter === '') {
-    //     + If the user only writes "exit," they exit the current process, and the choice question is asked again.
+    //     + If the user only writes "exit", they exit the current process, and the choice question is asked again.
     alert("See you later..")
 } else if (enter === 's') {
     //         * If the user chooses to sign up, here are the details they must enter:
-    //             # Name (Full):
-    //             - Check for leading or trailing spaces.
-    //             - The first letter should be capitalized.
-    //             - After each space, the first letter should remain capitalized.
-    //             - Check that all other characters are in lowercase.
-    //             - Do not save the Name if it has less than 5 characters (excluding spaces).
-    //             - Do not save the Name if it contains numbers, "@", or similar special characters.
+    //             # Name (Full): 
+    while (client_Uname < 5 || Number(client_Uname) === true || (client_Uname !== 97 && client_Uname !== 122)) {
+        var client_Uname = prompt("Your full name please:").trim()
+        if (client_Uname.length >= 5) {        
+            //             - Check for leading or trailing spaces.
+            
+            //             - The first letter should be capitalized.
+            //^             - After each space, the first letter should remain capitalized.
+            //^             - Check that all other characters are in lowercase.
+            client_Uname = client_Uname[0].toUpperCase() + client_Uname.slice(1)
+            
+            break
+        } else if (client_Uname < 5) {
+            //             - Do not save the Name if it has less than 5 characters (excluding spaces).
+            alert("the user name should have 5 letters or more.")
+        } else if (Number(client_Uname) === true || (client_Uname !== 97 && client_Uname !== 122)) {
+            //             - Do not save the Name if it contains numbers, "@", or similar special characters.
+            alert("Please do not use numbers or special characters")
+        }
+
+        console.log(client_Uname)
+    }
+    alert(client_Uname)
     
     //             # Email:
+    var client_email = prompt("Your email please:")
     //             - Check for leading or trailing spaces.
     //             - Convert all letters to lowercase.
     //             - Do not save the Email if it has spaces in the middle.
@@ -39,10 +60,12 @@ if (enter === 'e' || enter === null || enter === '') {
     //             - Ensure the email is unique.
     
     //             # Age:
+    var client_age = prompt("How old are you?")
     //             - Check for leading, trailing, or middle spaces.
     //             - Verify that only digits are entered.
     //             - Do not save the Age if it has 0 characters, or if it has 3 characters or more.
     
+    var client_passwoed = prompt("Create a passwoed:")
     //             # Password:
     //             - Check for leading or trailing spaces.
     //             - Do not save the Password if it has spaces in the middle.
@@ -51,7 +74,7 @@ if (enter === 'e' || enter === null || enter === '') {
     
     //             # Password_confirmed:
     //             - The user must re-enter their exact password; otherwise, they are blocked.
-    
+
 } else if (enter === 'l') {
     //         * If the user chooses to log in, here are the details they must enter:
     //             # Email:
@@ -66,10 +89,26 @@ if (enter === 'e' || enter === null || enter === '') {
 
 } else {
     alert("Please choose from options")
-    enter = prompt("- Signing ('s')\n- Logging ('l')\n- Changing the password ('p')\n- Exit ('e')")
+    enter = prompt(`
+        - Signing ('s')
+        - Logging ('l')
+        - Changing the password ('p')
+        - Exit ('e')`)
 }
 
 //         * After the user logs in, display the amount they have in their bank (user's choice) and offer them services:
+class Client {
+    constructor(name, age, email, password, solde) {
+        this.name = name
+        this.age = age
+        this.password = password
+        this.email = email
+        this.solde = solde
+    }   
+}
+
+let client_solde = 400
+let client1 = new Client(client_Uname, client_age, client_email, client_passwoed, solde)
 //             # Logout:
 //             - If the user chooses this option, they are logged out and offered the option, as at the beginning, to sign up, log in, or change the password.
             
@@ -89,3 +128,17 @@ if (enter === 'e' || enter === null || enter === '') {
             
 //             # History:
 //             - Ability to view the entire transaction history.
+
+// if (4 == 4) {
+//     var Unamename = 44
+// }
+// class na {
+//     constructor(name, namef) {
+//         this.Unamename = name
+//         this.namef = namef
+//     }
+// }
+
+// let p  = new na(Unamename, 'fgdfd')
+// console.log(Unamename);
+// console.log(p);
