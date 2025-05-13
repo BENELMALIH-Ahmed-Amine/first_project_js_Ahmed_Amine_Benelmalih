@@ -160,27 +160,61 @@ do {
                 log_password = prompt("The password is wrong, try again:")
             } else if (log_password === client1.password) {
                 alert("Your loged in..")
-                //                   * After the user logs in, display the amount they have in their bank (user's choice) and offer them services:
+                //      * After the user logs in, display the amount they have in their bank (user's choice) and offer them services:
+                alert("Hi mister " + client1.name + ".\nWelcome to our bank!")
+                let services = prompt(`
+                        What do you need today?
+                            - Your solde 'a'
+                            - Withdraw Money 'w'
+                            - Deposit Money 'd'
+                            - Take a Loan 't'
+                            - Invest 'i'
+                            - Transaction history 'h'
+                            - Logout 'out'
+                    `)
 
-                //                       # Logout:
-                //                       - If the user chooses this option, they are logged out and offered the option, as at the beginning, to sign up, log in, or change the password.
+                //          # Logout:
+                //              - If the user chooses this option, they are logged out and offered the option, as at the beginning, to sign up, log in, or change the password.
+                if (services === 'out') {
+                    enter = prompt(`
+                        - Signing ('s')
+                        - Logging ('l')
+                        - Changing the password ('p')
+                        - Exit ('out')
+                    `)
 
-                //                       # Withdraw Money:
-                //                       - If the user chooses this option, they can withdraw an amount from their bank (not exceeding the available amount).
+                    //          # Withdraw Money:
+                    //              - If the user chooses this option, they can withdraw an amount from their bank (not exceeding the available amount).
+                } else if (services === ) {
 
-                //                       # Deposit Money:
-                //                       - If the user chooses this option, they can deposit the desired amount (not exceeding 1000 dirhams).
+                    //          # Deposit Money:
+                    //              - If the user chooses this option, they can deposit the desired amount (not exceeding 1000 dirhams).
+                } else if (services === ) {
 
-                //                       # Take a Loan:
-                //                       - If the user chooses this option, they can take a loan up to 20% of what they already have.
-                //                       - They receive an additional 20%, but lose 10% with each login until reaching the amount of their loan.
+                    //          # Take a Loan:
+                    //              - If the user chooses this option, they can take a loan up to 20% of what they already have.
+                    //              - They receive an additional 20%, but lose 10% with each login until reaching the amount of their loan.
+                } else if (services === ) {
 
-                //                       # Invest:
-                //                       - If the user chooses this option, they can invest any amount in the bank.
-                //                       - Upon the next login, they will receive 20% of their investment each time until reaching 120% (earning 20% on each investment).
+                    //          # Invest:
+                    //              - If the user chooses this option, they can invest any amount in the bank.
+                    //              - Upon the next login, they will receive 20% of their investment each time until reaching 120% (earning 20% on each investment).
+                }  else if (services === ) {
 
-                //                       # History:
-                //                       - Ability to view the entire transaction history.
+                    //          # History:
+                    //              - Ability to view the entire transaction history.
+                } else {
+                    services = prompt(`
+                        Please choose from the options:
+                            - Your solde 'a'
+                            - Withdraw Money 'w'
+                            - Deposit Money 'd'
+                            - Take a Loan 't'
+                            - Invest 'i'
+                            - Transaction history 'h'
+                            - Logout 'out'
+                    `)
+                }
             }
 
             let change_P = confirm("Do you want to change your password? 'p'")
@@ -208,12 +242,13 @@ do {
 
 
     } else {
-        alert("Please choose from the options:")
         enter = prompt(`
-            - Signing ('s')
-            - Logging ('l')
-            - Changing the password ('p')
-            - Exit ('e')`)
+            Please choose from the options:
+                - Signing ('s')
+                - Logging ('l')
+                - Changing the password ('p')
+                - Exit ('e')
+        `)
     }
 } while (enter !== null);
 
