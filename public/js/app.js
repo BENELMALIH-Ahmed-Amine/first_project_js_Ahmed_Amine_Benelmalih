@@ -159,7 +159,7 @@ do {
                 //             - Check if the entered password is associated with the previously entered email.
                 log_password = prompt("The password is wrong, try again:")
             } else if (log_password === client1.password) {
-                alert("Your loged in..")
+                let loged = alert("Your loged in..")
                 //      * After the user logs in, display the amount they have in their bank (user's choice) and offer them services:
                 alert("Hi mister " + client1.name + ".\nWelcome to our bank!")
                 let services = prompt(`
@@ -192,12 +192,12 @@ do {
                     let withdraw = Number(prompt("How much do you need to take?"))
                     while (withdraw !== null) {
                         if (isNaN(withdraw) === true) {
-                            withdraw = Number(prompt('Please enter a number.'))
+                            withdraw = Number(prompt("Please enter a number:"))
                         } else if (client1.solde >= withdraw) {
                             client1.solde -= withdraw
                             alert("Now you have" + client1.solde + "!")
                             break
-                            
+
                         } else {
                             withdraw = Number(prompt("You don't have enough for this.\nPlease ask at you range."))
                         }
@@ -205,20 +205,75 @@ do {
 
                     //          # Deposit Money:
                     //              - If the user chooses this option, they can deposit the desired amount (not exceeding 1000 dirhams).
-                } else if (services === ) {
+                } else if (services === 'd') {
+                    let deposit = Number("How much do you have?")
+                    while (deposit !== null) {
+                        if (isNaN(withdraw) === true) {
+                            deposit = Number(prompt("Please enter a number:"))
+                        } else if (deposit > 1000) {
+                            deposit = Number(prompt("Of couse! Just you can't deposit more than a 1000 at a time.."))
+                        } else {
+                            client1.solde += deposit
+                            alert("Now you have" + client1.solde + "!")
+                            break
+                        }
+                    }
 
                     //          # Take a Loan:
                     //              - If the user chooses this option, they can take a loan up to 20% of what they already have.
-                    //              - They receive an additional 20%, but lose 10% with each login until reaching the amount of their loan.
-                } else if (services === ) {
+                } else if (services === 't') {
+                    let loan = Number(prompt("How moch do you need?"))
+                    while (loan !== null) {
+                        if (isNaN(loan) === true) {
+                            loan = Number(prompt("Please enter a number:"))
+                        } else if (loan > client1.solde / 5) {
+                            loan = Number(prompt("We can't loan you more than 20% from you solde."))
+
+                            //todo              - They receive an additional 20%, but lose 10% with each login until reaching the amount of their loan.
+                        } else {
+
+                            client1.solde += loan
+                            enter = 'l'
+
+                            if (loged === true) {
+                                for (let loged = 0; loged < 10; loged++) {
+                                    client1.solde -= loan / 10
+                                }
+                            } else {
+                                break
+                            }
+                        }
+                    }
 
                     //          # Invest:
                     //              - If the user chooses this option, they can invest any amount in the bank.
-                    //              - Upon the next login, they will receive 20% of their investment each time until reaching 120% (earning 20% on each investment).
-                } else if (services === ) {
+                } else if (services === 'i') {
+                    let invest = Number(prompt("How moch do you want to invest Mister" + client1.name))
+                    while (invest !== null) {
+                        if (isNaN(invest) === true) {
+                            invest = Number(prompt("Please enter a number:"))
+                        } else if (invest > client1.solde) {
+                            invest = Number(prompt("You dont't have that much.\nPlease invest at you range."))
+
+                            //todo              - Upon the next login, they will receive 20% of their investment each time until reaching 120% (earning 20% on each investment).
+                        } else {
+                            client1.solde -= invest
+                            enter = 'l'
+
+                            if (loged === true) {
+                                for (let loged = 0; loged < 6; loged++) {
+                                    client1.solde += invest / 5
+                                }
+                            } else {
+                                break
+                            }
+                        }
+                    }
 
                     //          # History:
                     //              - Ability to view the entire transaction history.
+                } else if (services === 'h') {
+
                 } else {
                     services = prompt(`
                         Please choose from the options:
