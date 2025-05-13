@@ -173,9 +173,12 @@ do {
                             - Logout 'out'
                     `)
 
-                //          # Logout:
-                //              - If the user chooses this option, they are logged out and offered the option, as at the beginning, to sign up, log in, or change the password.
-                if (services === 'out') {
+                if (services === 'a') {
+                    alert("You have" + client1.solde + "cois")
+
+                    //          # Logout:
+                    //              - If the user chooses this option, they are logged out and offered the option, as at the beginning, to sign up, log in, or change the password.
+                } else if (services === 'out') {
                     enter = prompt(`
                         - Signing ('s')
                         - Logging ('l')
@@ -185,7 +188,20 @@ do {
 
                     //          # Withdraw Money:
                     //              - If the user chooses this option, they can withdraw an amount from their bank (not exceeding the available amount).
-                } else if (services === ) {
+                } else if (services === 'w') {
+                    let withdraw = Number(prompt("How much do you need to take?"))
+                    while (withdraw !== null) {
+                        if (isNaN(withdraw) === true) {
+                            withdraw = Number(prompt('Please enter a number.'))
+                        } else if (client1.solde >= withdraw) {
+                            client1.solde -= withdraw
+                            alert("Now you have" + client1.solde + "!")
+                            break
+                            
+                        } else {
+                            withdraw = Number(prompt("You don't have enough for this.\nPlease ask at you range."))
+                        }
+                    }
 
                     //          # Deposit Money:
                     //              - If the user chooses this option, they can deposit the desired amount (not exceeding 1000 dirhams).
@@ -199,7 +215,7 @@ do {
                     //          # Invest:
                     //              - If the user chooses this option, they can invest any amount in the bank.
                     //              - Upon the next login, they will receive 20% of their investment each time until reaching 120% (earning 20% on each investment).
-                }  else if (services === ) {
+                } else if (services === ) {
 
                     //          # History:
                     //              - Ability to view the entire transaction history.
