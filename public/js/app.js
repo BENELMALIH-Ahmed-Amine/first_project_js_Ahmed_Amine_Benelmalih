@@ -28,7 +28,7 @@ class Client {
         this.email = email
         this.password = password
         this.solde = solde
-    }   
+    }
 }
 
 
@@ -56,14 +56,14 @@ do {
             } else if (client_Uname.length < 5) {
                 //             - Do not save the Name if it has less than 5 characters (excluding spaces).
                 client_Uname = prompt("Your name should be more than 5 characters").trim()
-            } else if (!(client_Uname >= 65 && client_Uname <= 90) && !(client_Uname >= 97 && client_Uname <= 122) || (client_Uname >= 48 && client_Uname <= 57) ) {
+            } else if (!(client_Uname >= 65 && client_Uname <= 90) && !(client_Uname >= 97 && client_Uname <= 122) || (client_Uname >= 48 && client_Uname <= 57)) {
                 //todo             - Do not save the Name if it contains numbers, "@", or similar special characters.
                 client_Uname = prompt("Your name shouldn't have an '@'").trim()
             }
         }
         console.log(client1);
-        
-    
+
+
         //             # Email:
         //             - Check for leading or trailing spaces.
         //             - Convert all letters to lowercase.
@@ -86,10 +86,10 @@ do {
                 break
             }
         }
-        
+
         console.log(client1);
-        
-        
+
+
         //             # Age:
         //             - Check for leading, trailing, or middle spaces.
         //             - Verify that only digits are entered.
@@ -104,8 +104,8 @@ do {
             }
         }
         console.log(client1);
-        
-        
+
+
         //             # Password:
         //             - Check for leading or trailing spaces.
         //             - Do not save the Password if it has spaces in the middle.
@@ -113,7 +113,7 @@ do {
         while (sign_password !== null) {
             //             - Require at least 7 characters to confirm the password.
             if (/\s/.test(sign_password) === true) {
-                sign_password = prompt("The password must not have spaces:")   
+                sign_password = prompt("The password must not have spaces:")
             }
             if (sign_password.length < 7) {
                 sign_password = prompt("Your password should have more than 7 characters:")
@@ -126,8 +126,8 @@ do {
             }
         }
         console.log(client1);
-        
-    
+
+
         //             # Password_confirmed:
         let confirme_password = prompt("Confirme your password:")
         //             - The user must re-enter their exact password; otherwise, they are blocked.
@@ -137,7 +137,14 @@ do {
             alert("you didn't match the email. See you later.")
             break
         }
-    
+
+        let log = confirm("Do you want to log in? 'l'")
+        if (log) {
+            enter = 'l'
+        } else {
+            break
+        }
+
     } else if (enter === 'l') {
         //         * If the user chooses to log in, here are the details they must enter:
         //             # Email:
@@ -153,34 +160,53 @@ do {
                 log_password = prompt("The password is wrong, try again:")
             } else if (log_password === client1.password) {
                 alert("Your loged in..")
-//                   * After the user logs in, display the amount they have in their bank (user's choice) and offer them services:
+                //                   * After the user logs in, display the amount they have in their bank (user's choice) and offer them services:
 
-//                       # Logout:
-//                       - If the user chooses this option, they are logged out and offered the option, as at the beginning, to sign up, log in, or change the password.
-            
-//                       # Withdraw Money:
-//                       - If the user chooses this option, they can withdraw an amount from their bank (not exceeding the available amount).
-            
-//                       # Deposit Money:
-//                       - If the user chooses this option, they can deposit the desired amount (not exceeding 1000 dirhams).
-            
-//                       # Take a Loan:
-//                       - If the user chooses this option, they can take a loan up to 20% of what they already have.
-//                       - They receive an additional 20%, but lose 10% with each login until reaching the amount of their loan.
-            
-//                       # Invest:
-//                       - If the user chooses this option, they can invest any amount in the bank.
-//                       - Upon the next login, they will receive 20% of their investment each time until reaching 120% (earning 20% on each investment).
-            
-//                       # History:
-//                       - Ability to view the entire transaction history.
+                //                       # Logout:
+                //                       - If the user chooses this option, they are logged out and offered the option, as at the beginning, to sign up, log in, or change the password.
+
+                //                       # Withdraw Money:
+                //                       - If the user chooses this option, they can withdraw an amount from their bank (not exceeding the available amount).
+
+                //                       # Deposit Money:
+                //                       - If the user chooses this option, they can deposit the desired amount (not exceeding 1000 dirhams).
+
+                //                       # Take a Loan:
+                //                       - If the user chooses this option, they can take a loan up to 20% of what they already have.
+                //                       - They receive an additional 20%, but lose 10% with each login until reaching the amount of their loan.
+
+                //                       # Invest:
+                //                       - If the user chooses this option, they can invest any amount in the bank.
+                //                       - Upon the next login, they will receive 20% of their investment each time until reaching 120% (earning 20% on each investment).
+
+                //                       # History:
+                //                       - Ability to view the entire transaction history.
             }
+
+            let change_P = confirm("Do you want to change your password? 'p'")
+            if (change_P) {
+                enter = 'p'
+            } else {
+                break
+            }
+        } else {
+            break
         }
-    
+
+
     } else if (enter === 'p') {
         //         * If the user chooses to change the password:
         //             - They must enter their existing Email in the Database.
-        
+        let check_id_email = prompt("Write your email to confirm your identity:")
+        if (check_id_email !== client1.email) {
+            check_id_email = prompt("The email is wrong, try again:")
+        } else if (check_id_email === client1.email) {
+            //             # Password:
+            let new_password = prompt("Ceate a new password acount:")
+            client1.password = new_password
+        }
+
+
     } else {
         alert("Please choose from the options:")
         enter = prompt(`
